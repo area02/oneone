@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p>This is a paragraph</p>
+    <script>
+        const area02Origin = 'https://staging.area02.site';
+        // const area02Origin = 'http://localhost:3000';
+
+        window.addEventListener("message", (event) => {
+
+            // 確保消息來源是父窗口
+            if (event.origin !== area02Origin) return;
+
+            try {
+
+                const { type, data } = event.data;
+
+                if (type === 'PAGE_ENTER') {
+                    
+                    // 取得用戶 token
+                    const { userToken, urlParams } = data;
+                    
+                    console.debug('User Token:', userToken);
+                    console.debug('URL Parameters:', urlParams);
+                    
+                    // 在這裡處理收到的資訊
+                    // 例如：更新頁面狀態
+                    // 或是根據 userToken 顯示不同內容
+                    // 或是根據 urlParams 處理頁面邏輯
+
+                }
+                else if (type === "LOGIN_STATUS") {
+
+                    // 處理登入狀態
+                    console.debug("User token:", data);
+                    // 在這裡處理收到的用戶資料
+
+                }
+
+            }
+            catch (error) {
+
+                console.error("Failed to process parent message:", error);
+
+            }
+
+        });
+    </script>
+
+    <script>
+        // CHECK_LOGIN 測試用 
+        setTimeout(() => {
+            
+            // window.parent.postMessage({
+            //     type: "CHECK_LOGIN",
+            //     query: {
+            //         aaaaaaa: 'value1',
+            //         bbbbbbb: 'value2',
+            //     }
+            // }, area02Origin);
+
+        }, 10000);
+    </script>
+    <script>
+        // NAVIGATE 測試用 
+        setTimeout(() => {
+            
+            // window.parent.postMessage({
+            //     type: 'NAVIGATE',
+            //     // path: '/deirdre/abc/i-pdd23c86b8--汪汪',
+            //     path: 'https://www.google.com',
+            //     query: {
+            //         aaaaaaa: '123',
+            //         bbbbbbb: '456'
+            //     }
+            // }, area02Origin);
+
+        }, 10000);
+    </script>
+    <script>
+        // UPDATE_URL_PARAMS 測試用 
+        setTimeout(() => {
+            
+            // window.parent.postMessage({
+            //     type: 'UPDATE_URL_PARAMS',
+            //     query: {
+            //         aaaaaaa: '5566',
+            //         bbbbbbb: '7788'
+            //     }
+            // }, area02Origin);
+
+        }, 10000);
+    </script>
+</body>
+</html>
