@@ -127,11 +127,40 @@ window.addEventListener("message", (event) => {
 - 回傳資料：
   - `userToken`: 用戶驗證令牌，為空時表示未登入
 
-## 注意事項
+### 注意事項
 
 1. 所有 postMessage 操作都必須指定正確的 `area02Origin`
 2. 建議實作錯誤處理機制
 3. 確保在使用 `userToken` 前進行有效性驗證
+
+## JWT 說明
+
+### 簽發
+
+JWT 由 AREA 02 簽發，並透過 `userToken` 回傳給 ONEONE。
+
+### 驗證
+
+payload 包含：
+
+```json
+{"iss":"AREA 02","sub":"12345","aud":"oneone","iat":1747619228,"exp":1747705628}
+```
+
+- `iss`: jwt 發行者，固定為 `AREA 02`
+- `sub`: token（AREA02 使用者唯一值）
+- `aud`: 接收方，固定為 `oneone`
+- `iat`: 發行時間（timestamp）
+- `exp`: token 到期時間（timestamp）
+
+演算法為：
+
+```json
+{
+  "typ": "JWT",
+  "alg": "RS256"
+}
+```
 
 ## 技術支援
 
