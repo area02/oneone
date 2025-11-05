@@ -37,7 +37,7 @@ window.parent.postMessage({
 
 ```js
 window.parent.postMessage({
-    type: 'LOGIN_STATUS',
+    type: 'CHECK_LOGIN_STATUS',
 }, area02Origin);
 ```
 
