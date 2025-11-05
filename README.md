@@ -19,7 +19,7 @@ const area02Origin = 'https://staging.area02.site';
 
 ### 1. 登入驗證
 
-使用 `CHECK_LOGIN` 事件來驗證用戶登入狀態。
+使用 `CHECK_LOGIN` 事件來驗證用戶登入狀態並登入。
 
 ```js
 window.parent.postMessage({
@@ -31,7 +31,45 @@ window.parent.postMessage({
 }, area02Origin);
 ```
 
-### 2. 頁面導航
+### 2. 確認登入狀況
+
+使用 `CHECK_LOGIN_STATUS` 事件檢查登入狀態並回傳。
+
+```js
+window.parent.postMessage({
+    type: 'LOGIN_STATUS',
+}, area02Origin);
+```
+
+已登入
+```js
+{
+    userToken: 'xxxxxxxxxxxxx'
+}
+```
+
+未登入
+```js
+{
+    userToken: null
+}
+```
+
+### 3. 導航至登入頁
+
+使用 `LOGIN` 事件跳轉至登入頁。
+
+```js
+window.parent.postMessage({
+    type: 'LOGIN',
+    query: {
+        customParam1: 'value1',
+        customParam2: 'value2'
+    }
+}, area02Origin);
+```
+
+### 4. 頁面導航
 
 使用 `NAVIGATE` 事件進行頁面跳轉，支援內部路徑和外部連結。
 
@@ -46,7 +84,7 @@ window.parent.postMessage({
 }, area02Origin);
 ```
 
-### 3. URL 參數更新
+### 5. URL 參數更新
 
 使用 `UPDATE_URL_PARAMS` 事件動態更新 URL 參數。
 
