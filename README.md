@@ -31,7 +31,7 @@ window.parent.postMessage({
 }, area02Origin);
 ```
 
-### 2. 確認登入狀況
+### 2. 確認登入狀況（20251105 新增）
 
 使用 `CHECK_LOGIN_STATUS` 事件檢查登入狀態並回傳。
 
@@ -55,7 +55,7 @@ window.parent.postMessage({
 }
 ```
 
-### 3. 導航至登入頁
+### 3. 導航至登入頁（20251105 新增）
 
 使用 `LOGIN` 事件跳轉至登入頁。
 
